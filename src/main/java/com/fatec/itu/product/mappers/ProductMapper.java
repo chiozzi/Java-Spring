@@ -1,0 +1,14 @@
+package com.fatec.itu.product.mappers;
+
+import com.fatec.itu.product.dtos.ProductRequest;
+import com.fatec.itu.product.entities.Product;
+
+public class ProductMapper {
+
+    public static Product toEntity(ProductRequest request) {
+        Product p = new Product();
+        p.setName(request.name());
+        p.setPrice(request.price());
+        return p;
+    }
+}

@@ -20,6 +20,8 @@ import com.fatec.itu.product.dtos.ProductResponse;
 import com.fatec.itu.product.entities.Product;
 import com.fatec.itu.product.services.ProductService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("products")
 public class ProductController {
@@ -45,7 +47,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponse> saveProduct(@RequestBody ProductRequest request)
+    public ResponseEntity<ProductResponse> saveProduct(@Valid @RequestBody ProductRequest request)
     {
         ProductResponse newProduct = service.saveProduct(request);
         
@@ -60,7 +62,7 @@ public class ProductController {
 
     @PutMapping("{id}")
     public ResponseEntity<Void> updateProduct( @PathVariable long id,
-                                               @RequestBody ProductRequest request
+                                               @Valid @RequestBody ProductRequest request
                                               )
     {
         service.updateProduct(request, id);

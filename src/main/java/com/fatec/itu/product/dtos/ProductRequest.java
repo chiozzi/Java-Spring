@@ -1,5 +1,7 @@
 package com.fatec.itu.product.dtos;
 
+import java.util.Set;
+
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -10,7 +12,9 @@ public record ProductRequest(
         String name,
 
         @Min(value = 0, message = "Price must be greater than or equal to 0")
-        Double price
-) {
-    
-}
+        double price,
+        
+        Long categoryId,
+
+        Set<Long> tagIds
+) {}

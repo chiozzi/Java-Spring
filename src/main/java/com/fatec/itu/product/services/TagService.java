@@ -19,6 +19,7 @@ public class TagService {
     @Autowired
     private TagRepository repository;
     
+    // busca todas as tags e converte para DTOs (response)
     public List<TagResponse> getAllTags() {
         return repository.findAll()
             .stream()
@@ -26,18 +27,21 @@ public class TagService {
             .toList();
     }
     
+    // busca tag por id e converte para DTO (response)
     public TagResponse getTagById(Long id) {
         Tag tag = repository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Tag não encontrada"));
         return TagMapper.toResponse(tag);
     }
     
+    // cria nova tag a partir do DTO (request) e converte para DTO (response)
     public TagResponse createTag(TagRequest request) {
         Tag tag = TagMapper.toEntity(request);
         tag = repository.save(tag);
         return TagMapper.toResponse(tag);
     }
     
+    // atualiza tag existente a partir do DTO (request) e converte para DTO (response)
     public TagResponse updateTag(Long id, TagRequest request) {
         Tag tag = repository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Tag não encontrada"));
@@ -46,6 +50,7 @@ public class TagService {
         return TagMapper.toResponse(tag);
     }
     
+    // deleta tag por id
     public void deleteTag(Long id) {
         if (!repository.existsById(id)) {
             throw new EntityNotFoundException("Tag não encontrada");

@@ -7,14 +7,27 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public record ProductRequest(
-        @NotBlank(message = "Name is required")
-        @Size(min = 3, max = 100, message = "Name must be between 3 and 100 characters")
+        @NotBlank(message = "Nome é obrigatório")
+        @Size(min = 3, max = 100, message = "Nome deve ter entre 3 e 100 caracteres")
         String name,
 
-        @Min(value = 0, message = "Price must be greater than or equal to 0")
+        @Min(value = 0, message = "O preço deve ser maior ou igual a zero")
         double price,
         
         Long categoryId,
 
         Set<Long> tagIds
 ) {}
+
+// recebe os dados enviados pelo usuário para criar ou atualizar um produto.
+// campos:
+//   - name: nome do produto
+//   - price: preço do produto
+//   - categoryId: id da categoria a que o produto pertence
+//   - tagIds: conjunto de ids das tags associadas
+// validações:
+//   - name → obrigatório, entre 3 e 100 caracteres
+//   - price → deve ser >= 0
+// exemplo de uso:
+//   enviado no corpo do POST ou PUT para /products
+

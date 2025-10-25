@@ -19,16 +19,21 @@ import jakarta.persistence.Table;
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     
+
+    // aqui vc define as colunas da tabela produto
+    // se vc quiser adicionar mais colunas, adicione aqui e tambem mude nos dtos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Double price;
     
+    // significa que muitos produtos podem pertencer a uma categoria
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
     
+    // significa que muitos produtos podem ter muitas tags
     @ManyToMany
     @JoinTable(
         name = "TBL_PRODUCT_TAG",
@@ -42,12 +47,14 @@ public class Product implements Serializable {
        
     }
 
+    // construtor sem categoria
     public Product(Long id, String name, Double price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
     
+    // construtor com categoria
     public Product(Long id, String name, Double price, Category category) {
         this.id = id;
         this.name = name;

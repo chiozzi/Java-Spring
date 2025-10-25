@@ -31,6 +31,7 @@ public class ProductService {
     @Autowired
     private TagRepository tagRepository;
 
+    // busca todos os produtos e converte para DTOs (response)
     public List<ProductResponse> getProducts() {
         return repository.findAll()
                 .stream()
@@ -38,12 +39,14 @@ public class ProductService {
                 .toList();
     }
 
+    // busca produto por id e converte para DTO (response)
     public ProductResponse getProductById(long id) {
         return repository.findById(id)
                 .map(ProductMapper::toDTO)
                 .orElseThrow(() -> new EntityNotFoundException("Produto não cadastrado"));
     }
 
+    // deleta produto por id
     public void deleteProductById(long id) {
         if (repository.existsById(id))
             repository.deleteById(id);
@@ -52,6 +55,7 @@ public class ProductService {
 
     }
 
+    // salva novo produto a partir do DTO (request) e converte para DTO (response)
     public ProductResponse saveProduct(ProductRequest request) {
         Product product = ProductMapper.toEntity(request);
         
@@ -75,6 +79,7 @@ public class ProductService {
         return ProductMapper.toDTO(savedProduct);
     }
 
+    // atualiza produto existente a partir do DTO (request)
     public void updateProduct(ProductRequest request, long id) {
         Product product = repository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Produto não encontrado"));
@@ -105,6 +110,7 @@ public class ProductService {
         repository.save(product);
     }
 
+    // busca produtos por id da categoria e converte para DTOs (response)
     public List<ProductResponse> getProductsByCategory(long categoryId) {
         return repository.findByCategoryId(categoryId)
                 .stream()

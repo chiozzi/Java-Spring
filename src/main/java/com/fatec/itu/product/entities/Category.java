@@ -16,16 +16,20 @@ import jakarta.persistence.Table;
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    // aqui vc define as colunas da tabela categoria
+    // se vc quiser adicionar mais colunas, adicione aqui e tambem mude nos dtos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    
+
+    // significa que uma categoria pode ter muitos produtos
     @OneToMany(mappedBy = "category")
     private List<Product> products = new ArrayList<>();
     
     public Category() {}
     
+    // construtor
     public Category(Long id, String name) {
         this.id = id;
         this.name = name;

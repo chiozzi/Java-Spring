@@ -16,16 +16,20 @@ import jakarta.persistence.Table;
 public class Tag implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    // aqui vc define as colunas da tabela tag
+    // se vc quiser adicionar mais colunas, adicione aqui e tambem mude nos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     
+    // significa que muitas tags podem ter muitos produtos
     @ManyToMany(mappedBy = "tags")
     private Set<Product> products = new HashSet<>();
     
     public Tag() {}
     
+    // construtor
     public Tag(Long id, String name) {
         this.id = id;
         this.name = name;

@@ -13,3 +13,9 @@ public interface ProductRepository extends JpaRepository<Product,Long>{
     List<Product> findByCategoryId(Long categoryId);
     
 }
+
+
+// faz a comunicação entre o código e o banco de dados
+// responsável por salvar, buscar, atualizar e deletar no banco
+// conecta a entidade Product com o banco de dados
+// JpaRepository = CRUD pronto

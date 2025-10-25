@@ -26,6 +26,7 @@ public class CategoryService {
     private ProductRepository productRepository;
 
     
+    // busca todas as categorias e converte para DTOs (response)
     public List<CategoryResponse> getAllCategories() {
         return categoryRepository.findAll()
             .stream()
@@ -33,18 +34,21 @@ public class CategoryService {
             .toList();
     }
     
+    // busca categoria por id e converte para DTO (response)
     public CategoryResponse getCategoryById(Long id) {
         Category category = categoryRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada"));
         return CategoryMapper.toResponse(category);
     }
     
+    // cria nova categoria a partir do DTO (request) e converte para DTO (response)
     public CategoryResponse createCategory(CategoryRequest request) {
         Category category = CategoryMapper.toEntity(request);
         category = categoryRepository.save(category);
         return CategoryMapper.toResponse(category);
     }
     
+    // atualiza categoria existente a partir do DTO (request) e converte para DTO (response)
     public CategoryResponse updateCategory(Long id, CategoryRequest request) {
         Category category = categoryRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada"));
@@ -53,6 +57,7 @@ public class CategoryService {
         return CategoryMapper.toResponse(category);
     }
     
+    // deleta categoria por id
     public void deleteCategory(Long id) {
         if (!categoryRepository.existsById(id)) {
             throw new EntityNotFoundException("Categoria não encontrada");
@@ -60,6 +65,7 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 
+    // busca produtos de uma categoria por id da categoria e converte para DTOs (response)
     public List<ProductResponse> getProductsFromCategory(long id) {
         return productRepository.findByCategoryId(id)
             .stream()

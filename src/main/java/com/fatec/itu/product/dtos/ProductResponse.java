@@ -9,3 +9,14 @@ public record ProductResponse(
         CategoryResponse category,
         Set<TagResponse> tags
 ) {}
+
+
+// envia os dados de um produto como resposta ao cliente
+// campos:
+//   - id: identificador único do produto
+//   - name: nome do produto
+//   - price: preço do produto
+//   - category: categoria associada ao produto (CategoryResponse)
+//   - tags: conjunto de tags associadas ao produto (Set<TagResponse>)
+// exemplo de uso:
+//   retornado no corpo da resposta de GET /products ou GET /products/{id}

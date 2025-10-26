@@ -52,3 +52,4 @@ public class StandardError {
 
 
 // Ctrl C + Ctrl V
+// mudar a primeira linha (package ...) para o pacote correto

@@ -58,3 +58,4 @@ public class ResourceExceptionHandler {
 
 
 // Ctrl C + Ctrl V
+// mudar a primeira linha (package ...) para o pacote correto

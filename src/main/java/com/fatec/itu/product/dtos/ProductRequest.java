@@ -14,8 +14,11 @@ public record ProductRequest(
         @Min(value = 0, message = "O preço deve ser maior ou igual a zero")
         double price,
         
+        // significa que a categoria é opcional
         Long categoryId,
 
+        // significa que as tags são opcionais
+        // set = coleção que não permite elementos duplicados
         Set<Long> tagIds
 ) {}
 

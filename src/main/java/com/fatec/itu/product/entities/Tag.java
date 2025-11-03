@@ -25,6 +25,9 @@ public class Tag implements Serializable {
     
     // significa que muitas tags podem ter muitos produtos
     @ManyToMany(mappedBy = "tags")
+
+    // set não permite repetiçao
+    // hashset é uma implementaçao de set
     private Set<Product> products = new HashSet<>();
     
     public Tag() {}

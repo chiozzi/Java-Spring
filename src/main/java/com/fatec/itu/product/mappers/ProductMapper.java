@@ -25,10 +25,8 @@ public class ProductMapper {
             product.getId(),
             product.getName(),
             product.getPrice(),
-            product.getCategory() != null ? CategoryMapper.toResponse(product.getCategory()) : null,
-            product.getTags().stream()
-                .map(TagMapper::toResponse)
-                .collect(Collectors.toSet())
+            product.getCategory() != null ? CategoryMapper.toResponse(product.getCategory()) : null, // trata categoria nula
+            product.getTags().stream().map(TagMapper::toResponse).collect(Collectors.toSet()) // converte cada Tag para TagResponse
         );
     }
 }

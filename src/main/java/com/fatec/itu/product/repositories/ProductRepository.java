@@ -10,6 +10,7 @@ import com.fatec.itu.product.entities.Product;
 
 public interface ProductRepository extends JpaRepository<Product,Long>{
     
+    // método personalizado para buscar produtos por categoria
     List<Product> findByCategoryId(Long categoryId);
     
 }
